@@ -3,6 +3,7 @@
 const https = require("https");
 const fs = require("fs");
 const path = require("path");
+const os = require("os");
 
 const GITHUB_API_URL =
 	"https://api.github.com/repos/johnlindquist/rules-for-tools/contents";
@@ -113,8 +114,7 @@ async function main() {
 		console.log(`Found ${mdcFiles.length} .mdc rule file(s).`);
 
 		// 3. Download each .mdc file
-		let downloadedCount = 0;
-		let skippedCount = 0;
+		let updatedCount = 0;
 
 		for (const fileItem of mdcFiles) {
 			const fileName = fileItem.name;
@@ -129,27 +129,28 @@ async function main() {
 			}
 
 			if (fs.existsSync(destFilePath)) {
-				console.log(`  - ${fileName} already exists, skipping.`);
-				skippedCount++;
-			} else {
-				console.log(`  - Downloading ${fileName}...`);
-				try {
-					await downloadFile(remoteFileUrl, destFilePath);
-					downloadedCount++;
-				} catch (downloadError) {
-					console.error(
-						`    Failed to download ${fileName}: ${downloadError.message}`,
-					);
-				}
+				// Move the existing file to a temp directory
+				const tempDir = os.tmpdir();
+				const tempFilePath = path.join(tempDir, `${fileName}.${Date.now()}`);
+				fs.renameSync(destFilePath, tempFilePath);
+				console.log(`  - ${fileName} existed, moved to temp: ${tempFilePath}`);
+			}
+			console.log(`  - Downloading ${fileName}...`);
+			try {
+				await downloadFile(remoteFileUrl, destFilePath);
+				updatedCount++;
+			} catch (downloadError) {
+				console.error(
+					`    Failed to download ${fileName}: ${downloadError.message}`,
+				);
 			}
 		}
 
 		console.log("\n--- Summary ---");
-		console.log(`Downloaded: ${downloadedCount} new file(s)`);
-		console.log(`Skipped:    ${skippedCount} existing file(s)`);
+		console.log(`Updated:    ${updatedCount} file(s)`);
 		console.log(`Total .mdc files processed: ${mdcFiles.length}`);
 		console.log(`All rules should now be in ${absoluteDestDir}`);
-		console.log("\n✅ Rules download process finished.");
+		console.log("\n✅ Rules update process finished.");
 	} catch (error) {
 		console.error("\n❌ An error occurred during the rules download process:");
 		console.error(error.message);
