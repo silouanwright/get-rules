@@ -18,7 +18,12 @@
     [
       "@semantic-release/github",
       {
-        "assets": []
+        "assets": [],
+        "failComment": false,
+        "addReleases": "bottom",
+        "failTitle": "The automated release is failing 🚨",
+        "labels": false,
+        "assignees": []
       }
     ],
     [
