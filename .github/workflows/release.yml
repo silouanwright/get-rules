@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: 20
           registry-url: "https://registry.npmjs.org/"
-          node-token: ${{ secrets.NPM_TOKEN }}
+          token: ${{ secrets.NPM_TOKEN }}
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
