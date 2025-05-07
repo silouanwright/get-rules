@@ -27,6 +27,12 @@ jobs:
           version: 8
       - name: Install dependencies
         run: pnpm install
+      - name: Verify NPM Auth
+        run: |
+          echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > ~/.npmrc
+          npm whoami
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Semantic Release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
