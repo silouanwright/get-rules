@@ -3,10 +3,9 @@ description: Diagram manager. Load when the user requests anything like "Create 
 globs:
 alwaysApply: false
 ---
+Attempt to read docs/NOTES.md, docs/PRD.md, docs/TECH_STACK.md, and openapi.yaml before starting.
 
-Attempt to read NOTES.md, PRD.md, TECH_STACK.md, and openapi.yaml before starting.
-
-Create all diagrams in diagrams/<diagram>.md
+Create all diagrams in docs/diagrams/<diagram>.md
 
 
 Here are the essential rules for creating Mermaid diagrams that render well in GitHub Markdown:
