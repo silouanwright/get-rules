@@ -1,6 +1,6 @@
 # get-rules
 
-An npm utility to quickly download and install the latest `.mdc` rule files for AI-assisted coding tools (like Cursor) from John Lindquist's [rules-for-tools](https://github.com/johnlindquist/rules-for-tools) repository.
+An npm utility to quickly download and install the latest `.mdc` rule files for AI-assisted coding tools (like Cursor) from John Lindquist's [get-rules](https://github.com/johnlindquist/get-rules) repository.
 
 ## Installation
 
@@ -23,7 +23,7 @@ get-rules
 ```
 
 This will:
-1. Connect to the GitHub API to fetch the list of files in the [johnlindquist/rules-for-tools](https://github.com/johnlindquist/rules-for-tools) repository.
+1. Connect to the GitHub API to fetch the list of files in the [johnlindquist/get-rules](https://github.com/johnlindquist/get-rules) repository.
 2. Identify all `.mdc` (Markdown Custom) rule files in the root of that repository.
 3. Create a `.cursor/rules` directory in your current working directory (if it doesn't exist).
 4. Download each `.mdc` file into `.cursor/rules`, skipping any that already exist locally. This ensures you always get the latest versions of new rules without overwriting local modifications to existing ones unless you manually delete them first.
@@ -36,7 +36,7 @@ This tool is a self-contained Node.js script. It directly interacts with the Git
 
 Issues and pull requests are welcome! Please feel free to contribute to the [get-rules repository](https://github.com/johnlindquist/get-rules).
 
-For the rules themselves, please contribute to the [rules-for-tools repository](https://github.com/johnlindquist/rules-for-tools).
+For the rules themselves, please contribute to the [get-rules repository](https://github.com/johnlindquist/get-rules).
 
 ## License
 

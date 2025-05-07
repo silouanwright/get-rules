@@ -6,7 +6,7 @@ const path = require("path");
 const os = require("os");
 
 const DEFAULT_ORG = "johnlindquist";
-const DEFAULT_REPO = "rules";
+const DEFAULT_REPO = "get-rules";
 const RULES_PATH = ".cursor/rules";
 
 // Parse optional org/repo argument
@@ -106,7 +106,7 @@ async function main() {
 
 		// 2. Fetch file list from GitHub API
 		console.log(
-			"Fetching rule file list from GitHub (johnlindquist/rules-for-tools)...",
+			"Fetching rule file list from GitHub (johnlindquist/get-rules)...",
 		);
 		const repoContents = await httpsGetJson(GITHUB_API_URL);
 
