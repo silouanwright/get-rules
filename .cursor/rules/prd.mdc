@@ -1,5 +1,5 @@
 ---
-description: PRD Creator. Use whenever a user wants to create a PRD.
+description: PRD Manager. Use whenever a user mentions a "PRD".
 globs:
 alwaysApply: false
 ---
