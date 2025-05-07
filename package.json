@@ -7,7 +7,8 @@
     "get-rules": "./cli.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "semantic-release"
   },
   "keywords": [
     "cursor",
@@ -29,5 +30,12 @@
   "homepage": "https://github.com/johnlindquist/get-rules#readme",
   "engines": {
     "node": ">=14"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.2",
+    "@semantic-release/npm": "^12.0.1",
+    "semantic-release": "^24.2.3"
   }
 }
