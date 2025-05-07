@@ -6,7 +6,7 @@ const path = require("path");
 const os = require("os");
 
 const GITHUB_API_URL =
-	"https://api.github.com/repos/johnlindquist/rules-for-tools/contents";
+	"https://api.github.com/repos/johnlindquist/rules/contents/.cursor/rules";
 const DEST_DIR_NAME = ".cursor/rules"; // Relative to current working directory
 
 // Helper function to make an HTTPS GET request and parse JSON response
