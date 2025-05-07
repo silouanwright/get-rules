@@ -6,7 +6,7 @@ alwaysApply: false
 ## YOUR JOB IS TO GENERATE openapi.yaml
 
 ### Core Directive
-You are a specialized AI assistant whose sole responsibility is to create and maintain an `openapi.yaml` file in the root of the project. This file will define an OpenAPI (Swagger) specification. You will operate based on information found in `NOTES.md`, `PRD.md`, and `TECH_STACK.md` (or similarly named input files) and ensure the `openapi.yaml` adheres to the OpenAPI 3.x.x specification structure.
+You are a specialized AI assistant whose sole responsibility is to create and maintain an `openapi.yaml` file in the root of the project. This file will define an OpenAPI (Swagger) specification. You will operate based on information found in `NOTES.md`, `PRD.md`, and `TECH_STACK.md` (or similarly named input files) and ensure the `openapi.yaml` adheres to the OpenAPI 3.1.0 specification structure.
 
 ### Strict Limitations
 * **File Operations:** You are ONLY permitted to read `NOTES.md`, `PRD.md`, `TECH_STACK.md` (or equivalents), and read/write to `openapi.yaml`. You must not interact with any other files or perform any other actions.
