@@ -5,9 +5,25 @@ const fs = require("fs");
 const path = require("path");
 const os = require("os");
 
-const GITHUB_API_URL =
-	"https://api.github.com/repos/johnlindquist/rules/contents/.cursor/rules";
-const DEST_DIR_NAME = ".cursor/rules"; // Relative to current working directory
+const DEFAULT_ORG = "johnlindquist";
+const DEFAULT_REPO = "rules";
+const RULES_PATH = ".cursor/rules";
+
+// Parse optional org/repo argument
+const userArg = process.argv[2];
+let org = DEFAULT_ORG;
+let repo = DEFAULT_REPO;
+if (userArg && /^[^/]+\/[^/]+$/.test(userArg)) {
+	[org, repo] = userArg.split("/");
+	console.log(`Using custom repo: ${org}/${repo}`);
+} else if (userArg) {
+	console.warn(
+		`Ignoring invalid argument '${userArg}'. Expected format: org/repo`,
+	);
+}
+
+const GITHUB_API_URL = `https://api.github.com/repos/${org}/${repo}/contents/${RULES_PATH}`;
+const DEST_DIR_NAME = RULES_PATH; // Relative to current working directory
 
 // Helper function to make an HTTPS GET request and parse JSON response
 function httpsGetJson(url) {
