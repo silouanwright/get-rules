@@ -1,109 +1,146 @@
 ---
-description: Diagram Creator. Load when the user requests "Create a diagram".
+description: Diagram manager. Load when the user requests anything like "Create diagram", "Update diagram", etc.
 globs:
 alwaysApply: false
 ---
 
-## YOUR JOB IS TO GENERATE MERMAID DIAGRAMS
+Attempt to read NOTES.md, PRD.md, TECH_STACK.md, and openapi.yaml before starting.
 
-### Core Directive
-You are a specialized AI assistant whose sole responsibility is to create and maintain Mermaid diagram files (e.g., `my_sequence_diagram.md`) within the `diagrams/` directory of the project. Each file will contain a single Mermaid diagram in a Markdown code block. You will operate based on information found in `NOTES.md`, `PRD.md`, `TECH_STACK.md`, and `openapi.yaml` (or similarly named input files), and the user's specific diagram request (e.g., "Create a sequence diagram for user login").
+Create all diagrams in diagrams/<diagram>.md
 
-### Strict Limitations
-* **File Operations:** You are ONLY permitted to read `NOTES.md`, `PRD.md`, `TECH_STACK.md`, `openapi.yaml` (or equivalents), and read/write to files within the `diagrams/` directory. You must not interact with any other files or perform any other actions.
-* **Output Format:** Your entire output for a diagram request must be the content of a single `.md` file placed in `diagrams/`. This file will contain any necessary explanatory text or TODOs, followed by a single Mermaid diagram enclosed in a fenced code block (```mermaid ... ```).
-* **Communication:** You are forbidden from generating any conversational output, commentary, preamble, or summaries outside of the generated diagram's `.md` file.
-* **User Interaction (within the `.md` file):** If sections of the diagram are incomplete or require clarification due to missing information in the source documents, you will indicate this *within the generated `.md` file*, typically in a Markdown section above the Mermaid code block.
 
-### Diagram Generation Principles & Source Mapping
+Here are the essential rules for creating Mermaid diagrams that render well in GitHub Markdown:
 
-You must generate diagrams based on the user's request (which will specify the type of diagram and the subject) and the content of the source documents.
-
-**Supported Diagram Types & Potential Information Sources:**
-
-* **`graph TD` (Flowcharts - Top Down preferred):**
-    * **Source:** `PRD.md` (user flows, business logic, feature steps), `openapi.yaml` (API call sequences), `NOTES.md` (general process descriptions).
-    * **Example Use:** Visualizing a user registration process, an order fulfillment workflow, or an API request lifecycle.
-* **`sequenceDiagram`:**
-    * **Source:** `openapi.yaml` (interactions between services/client for API calls), `PRD.md` (user interaction sequences, system component interactions), `TECH_STACK.md` (interactions between defined services).
-    * **Example Use:** Showing the sequence of calls for an API endpoint, or the interaction between a user, frontend, backend, and database.
-* **`classDiagram`:**
-    * **Source:** `openapi.yaml` (schemas defined in `components.schemas`), `TECH_STACK.md` (database schemas, key application modules/classes if detailed), `PRD.md` (data models if described).
-    * **Example Use:** Representing the structure of data models or key software components and their relationships.
-* **`stateDiagram-v2`:**
-    * **Source:** `PRD.md` (states of entities like an "Order" or "User Account", state transition rules), `openapi.yaml` (if API resources have distinct states).
-    * **Example Use:** Showing the lifecycle of an order (e.g., Pending -> Processing -> Shipped -> Delivered).
-* **`erDiagram` (Entity Relationship):**
-    * **Source:** `TECH_STACK.md` (database choices, ORM models if mentioned), `openapi.yaml` (`components.schemas` can imply relationships), `PRD.md` (data entities and how they relate).
-    * **Example Use:** Visualizing database table structures and their relationships.
-* **`pie` (Pie charts):**
-    * **Source:** Less likely to be directly derivable from structured docs without specific data in `NOTES.md` or a very specific request. Use if `NOTES.md` provides clear categorical data and percentages/values.
-    * **Example Use:** Showing distribution of task types if data is available.
-* **`gantt` (Gantt charts):**
-    * **Source:** `PRD.md` (if project phases, timelines, or feature dependencies are outlined), `NOTES.md` (if task lists with durations are present).
-    * **Example Use:** Visualizing a project timeline or feature release schedule.
-* **`mindmap`:**
-    * **Source:** `PRD.md` (breaking down features, brainstorming ideas), `NOTES.md` (hierarchical information).
-    * **Example Use:** Structuring components of a large feature or outlining project requirements.
-
-### Essential Rules for Creating Mermaid Diagrams (GitHub Markdown Compatibility)
-You **MUST** adhere to the following rules to ensure diagrams render correctly in GitHub Markdown:
 
 1.  **Use the Correct Fenced Code Block:**
-    * Always start the block with ```mermaid and end it with ```.
-2.  **Stick to Well-Supported Diagram Types:** (Listed above). Avoid experimental features.
-3.  **Keep Syntax Simple and Standard:**
-    * **Node IDs:** Simple alphanumeric IDs (e.g., `node1`, `processA`). Avoid spaces/special characters.
-    * **Node/Actor/State Labels:** **ALWAYS use quotes (`"..."`)** for labels, especially with spaces, punctuation, or keywords (e.g., `A["User Input"]`).
-    * **Arrows:** Use standard arrow types (`-->`, `---`, `==>`, etc.).
-    * **Comments within Mermaid:** Use `%%` for comments if needed for *your* internal logic, but not for user-facing TODOs.
-4.  **Mindmap Specifics for GitHub:**
-    * Use basic indentation for hierarchy. Each node on its **own line**.
-    * **NO ICONS** (e.g., `::icon(fa fa-user)`). This **WILL BREAK** rendering in GitHub. Use plain text nodes.
-5.  **Prefer Vertical Layouts (`graph TD`):** For flowcharts, `TD` (Top Down) is generally best.
-6.  **Let GitHub Handle the Styling:**
-    * **DO NOT** use `%%{init: {'theme': 'dark'}}%%` or custom styling (`classDef`, `style`). GitHub ignores these and applies its own theme.
-7.  **Keep Diagrams Focused:** Avoid overly complex diagrams. Break down if necessary (though you'll be generating one diagram per file).
-8.  **(You cannot test in GitHub Preview, but adhere to these rules as if you were.)**
-9.  **Tooling & Edit Verification Note (For the User's Awareness, not an action for you):** Automated tools might struggle with Mermaid. Users should review.
 
-### Workflow
+    *   Always start the block with ```mermaid and end it with ```.
 
-1.  **Process User Request:** A user requests a specific type of diagram for a particular purpose (e.g., "Create a sequence diagram for the `/auth/login` API endpoint," or "Generate a flowchart for the new user onboarding process described in the PRD"). The request will also specify the desired filename (e.g., `login_sequence.md`).
-2.  **Access Files:**
-    * Read the content of `NOTES.md`.
-    * Read the content of `PRD.md`.
-    * Read the content of `TECH_STACK.md`.
-    * Read the content of `openapi.yaml`.
-    * These files are your primary sources of information.
-3.  **Manage Diagram File (`diagrams/<filename>.md`):**
-    * **Create/Update File:** Create or overwrite the specified file in the `diagrams/` directory.
-    * **Content Generation:**
-        * Attempt to generate the Mermaid syntax for the requested diagram type by extracting and synthesizing relevant information from the source documents.
-        * Strictly follow all "Essential Rules for Creating Mermaid Diagrams" listed above.
-    * **Identify Gaps & Insert Markdown TODOs:**
-        * If, after processing the source files, you lack specific information crucial for completing the diagram accurately as per the user's request:
-            1.  Above the ```mermaid code block, add a Markdown section like this:
-                ```markdown
-                ### 🚨 Missing Information for Diagram
-                To complete this diagram accurately, please provide details on the following:
+    *   ```markdown
 
-                * * ```
-            2.  The questions should be specific and guide the user on what's needed. Provide examples of expected answers if it clarifies the request.
-            3.  Then, generate the Mermaid diagram with placeholders if possible (e.g., `NodeX["TODO: Define this step"]`), or generate the diagram as best as possible with the available information, clearly noting the gaps in the TODO section above.
-    * **Mermaid Block:** Place the complete Mermaid diagram code within a fenced code block:
-        ```markdown
         ```mermaid
-        graph TD
-            A["Start"] --> B{"Is information complete?"};
-            B -- Yes --> C["Generate Diagram"];
-            B -- No --> D["Add TODOs & Generate Partial Diagram"];
-            C --> E["End"];
-            D --> E;
-        %% Example diagram structure
+
+          graph TD
+
+            A[Start] --> B{Decision};
+
+            B -- Yes --> C[Action 1];
+
+            B -- No --> D[Action 2];
+
         ```
 
-4.  **Output:** Your final action is to output the complete content of the `diagrams/<filename>.md` file. No other text or explanation should be provided.
+        ```
 
-### Final Instruction
-Execute these instructions precisely. Your sole focus is generating valid, GitHub-compatible Mermaid diagrams in the specified file, based on the provided source documents and user request. Prioritize clarity and adherence to the rendering rules.
+
+2.  **Stick to Well-Supported Diagram Types:**
+
+    *   GitHub generally has good support for the most common types:
+
+        *   `graph` (Flowcharts - `TD` is often best for readability)
+
+        *   `sequenceDiagram`
+
+        *   `classDiagram`
+
+        *   `stateDiagram-v2` (Prefer v2 for better features/rendering)
+
+        *   `erDiagram` (Entity Relationship)
+
+        *   `pie` (Pie charts)
+
+        *   `gantt` (Gantt charts)
+
+        *   `mindmap` (Mind Maps - Basic structure only. *See syntax notes below*)
+
+    *   Avoid extremely new or less common diagram types, as GitHub's Mermaid version might lag slightly behind the latest release.
+
+
+3.  **Keep Syntax Simple and Standard:**
+
+    *   **Node IDs:** Use simple alphanumeric IDs (e.g., `node1`, `processA`, `userAuth`). Avoid spaces or special characters in IDs.
+
+    *   **Node/Actor/State Labels:** **Use quotes (`"..."`)** for labels, especially if they contain spaces, punctuation, special characters, or Mermaid keywords. This is the most common source of rendering errors.
+
+        *   *Good:* `A["User Input"] --> B["Validate Data"];`
+
+        *   *Bad (potential error):* `A[User Input] --> B[Validate Data];`
+
+    *   **Arrows:** Use standard arrow types (`-->`, `---`, `==>`, `->>`, etc.).
+
+    *   **Comments:** Use `%%` for comments if needed.
+
+
+4.  **Mindmap Specifics for GitHub:**
+
+    *   GitHub **supports the basic `mindmap` structure**, using indentation to define hierarchy (parent/child relationships).
+
+    *   Ensure each node/item is on its **own line** with correct indentation relative to its parent.
+
+    *   GitHub **DOES NOT support** experimental or advanced `mindmap` features like `::icon()` syntax. Using icons **will cause rendering errors**.
+
+    *   Stick to plain text nodes for mind maps intended for GitHub Markdown.
+
+    *   *Correct Example (GitHub compatible):*
+
+        ```mermaid
+
+        mindmap
+
+          Root
+
+            Parent
+
+              Child 1
+
+              Child 2
+
+        ```
+
+    *   *Incorrect Example (GitHub incompatible due to icons):*
+
+        ```mermaid
+
+        mindmap
+
+          Root
+
+            Parent
+
+              ::icon(fa fa-one) Child 1
+
+              ::icon(fa fa-two) Child 2
+
+        ```
+
+
+5.  **Prefer Vertical Layouts (`graph TD`):**
+
+    *   For flowcharts (`graph`), `TD` (Top Down) or `TB` (Top Bottom) usually renders more readably within the flow of a Markdown document than `LR` (Left Right). GitHub often gives diagrams ample width, but vertical flows are easier to follow on typical screens.
+
+
+6.  **Let GitHub Handle the Styling:**
+
+    *   **DO NOT** try to set themes (e.g., `%%{init: {'theme': 'dark'}}%%`) or apply custom styling using `classDef` or `style` *within the Mermaid code*.
+
+    *   GitHub **ignores** these theme directives and applies its own styling based on whether the user is viewing GitHub in light, dark, or dimmed mode. Your diagram will automatically adapt. Trying to force colors or themes will likely just be ignored or look out of place.
+
+
+7.  **Keep Diagrams Focused:**
+
+    *   Avoid overly complex diagrams with excessive nodes, edges, or nesting in a single block. While GitHub *can* render complex ones, they might become hard to read or hit rendering limits. Break down very complex ideas into multiple simpler diagrams if possible.
+
+
+8.  **Test in GitHub Preview:**
+
+    *   Always use GitHub's preview tab when editing your Markdown file to see exactly how the diagram will render. This is the best way to catch syntax errors or unexpected layout issues.
+
+
+9.  **Tooling & Edit Verification Note:**
+
+    *   Automated code editing tools may sometimes struggle to apply changes correctly within Mermaid blocks, especially with complex syntax involving indentation or specific formatting (like the mindmap example above).
+
+    *   **Always carefully review edits** made to Mermaid blocks by automated tools. If errors persist or the diagram doesn't render as expected, manual correction might be necessary.
+
+
+**In short:** Write standard, clearly quoted Mermaid syntax using common diagram types. For mindmaps in GitHub, use only the basic indentation structure (no icons). Prefer `graph TD`. Avoid trying to control the theme/colors yourself. Use the GitHub preview, and double-check automated edits to Mermaid blocks.
