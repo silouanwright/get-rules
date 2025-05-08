@@ -3,10 +3,12 @@ description: PRD Creator. Invoke with "Create a PRD"
 globs:
 alwaysApply: false
 ---
-## YOUR JOB IS TO MANAGE docs/PRD.md
+## PRD Management Rule
+
+*This rule guides the creation and maintenance of the `docs/PRD.md` file.*
 
 ### Core Directive
-You are a specialized AI assistant whose sole responsibility is to create, maintain, and update the `docs/PRD.md` file located in the root of the project. You will operate based on information found in `NOTES.md` and ensure the `docs/PRD.md` aligns with a predefined structure.
+Create, maintain, and update the `docs/PRD.md` file located in the root of the project. Operate based on information found in `NOTES.md` and ensure `docs/PRD.md` aligns with the predefined structure below.
 
 ### Strict Limitations
 * **File Operations:** You are ONLY permitted to read `NOTES.md` and read/write to `docs/PRD.md`. You must not interact with any other files or perform any other actions.
@@ -14,7 +16,7 @@ You are a specialized AI assistant whose sole responsibility is to create, maint
 * **User Interaction:** You do not directly converse with the user. If sections of the `docs/PRD.md` are incomplete, you will indicate this *within* the `docs/PRD.md` file using a specific comment format.
 
 ### PRD Structure and Content Source
-The `docs/PRD.md` file must be structured around the following eight key sections. These sections are derived from the "Technical Plan Outline" questions.
+The `docs/PRD.md` file must be structured around the following eight key sections, derived from the "Technical Plan Outline" questions below.
 
 #### Technical Plan Outline (Source for docs/PRD.md Structure and TODOs)
 
@@ -54,10 +56,10 @@ The `docs/PRD.md` file must be structured around the following eight key section
         * Review `NOTES.md` for relevant information pertaining to that section.
         * Update the corresponding section in `docs/PRD.md` with this information. If the section already has content, intelligently merge or update it based on the latest `NOTES.md`. Strive to be comprehensive but concise.
     * **Identify Gaps & Insert TODOs:** After attempting to populate each section from `NOTES.md`:
-        *   A TODO comment MUST ONLY be inserted if, after reviewing `NOTES.md`, the section in `docs/PRD.md` remains genuinely empty, or contains only placeholder text (e.g., a rephrasing of the section title without substantive information), or if critical information explicitly requested by the section's definition (as outlined in "Technical Plan Outline") is clearly missing and not found in `NOTES.md`.
-        *   Do NOT insert a TODO comment if the section has been populated with relevant information from `NOTES.md`, even if that information could be more detailed. The purpose of the TODO is to address missing information, not to solicit further elaboration on existing information unless that information is so scant as to be effectively missing or fails to address the core requirements of the section.
-        *   **TODO Comment Format:** Use an HTML comment starting with `<!-- TODO: ... -->`.
-        *   **Contextual TODO Prompts:** When a TODO is necessary according to the criteria above, analyze `NOTES.md` and the current `docs/PRD.md` to infer a specific question that addresses the missing information. The examples provided in "Technical Plan Outline" for each section should be used as inspiration for formulating these contextual prompts. The goal is to ask targeted questions based on the current context, rather than always using the generic examples, to guide the user in providing the specific missing information.
+        - A TODO comment MUST ONLY be inserted if, after reviewing `NOTES.md`, the section in `docs/PRD.md` remains genuinely empty, or contains only placeholder text (e.g., a rephrasing of the section title without substantive information), or if critical information explicitly requested by the section's definition (as outlined in "Technical Plan Outline") is clearly missing and not found in `NOTES.md`.
+        - Do NOT insert a TODO comment if the section has been populated with relevant information from `NOTES.md`, even if that information could be more detailed. The purpose of the TODO is to address missing information, not to solicit further elaboration on existing information unless that information is so scant as to be effectively missing or fails to address the core requirements of the section.
+        - **TODO Comment Format:** Use an HTML comment starting with `<!-- TODO: ... -->`.
+        - **Contextual TODO Prompts:** When a TODO is necessary according to the criteria above, analyze `NOTES.md` and the current `docs/PRD.md` to infer a specific question that addresses the missing information. The examples provided in "Technical Plan Outline" for each section should be used as inspiration for formulating these contextual prompts. The goal is to ask targeted questions based on the current context, rather than always using the generic examples, to guide the user in providing the specific missing information.
 
 4.  **Output:** Your final action is to output the complete, updated content of `docs/PRD.md`. No other text or explanation should be provided.
 

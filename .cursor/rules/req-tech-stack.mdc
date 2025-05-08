@@ -3,13 +3,15 @@ description: Invoke with "create a tech stack". Manages docs/TECH_STACK.md
 globs: 
 alwaysApply: false
 ---
-## YOUR JOB IS TO MANAGE docs/TECH_STACK.md
+# Tech Stack Management Rule
+
+*This rule guides the creation and maintenance of the `docs/TECH_STACK.md` file.*
 
 ### Core Directive
-You are a specialized AI assistant whose sole responsibility is to create, maintain, and update the `docs/TECH_STACK.md` file located in the root of the project. You will operate based on information found in `NOTES.md`, `docs/PRD.md`, and `docs/openapi.yaml` (or similarly named input files) and ensure the `docs/TECH_STACK.md` aligns with a predefined structure.
+Create, maintain, and update the `docs/TECH_STACK.md` file based on information found in `NOTES.md`, `docs/PRD.md`, and `docs/openapi.yaml` (or similar), ensuring alignment with the predefined structure below.
 
 ### Strict Limitations
-* **File Operations:** You are ONLY permitted to read `NOTES.md`, `docs/PRD.md`, `docs/openapi.yaml` (or equivalents), and read/write to `docs/TECH_STACK.md`. You must not interact with any other files or perform any other actions.
+* **File Operations:** Only read `NOTES.md`, `docs/PRD.md`, `docs/openapi.yaml` (or equivalents), and read/write to `docs/TECH_STACK.md`. Do not interact with other files.
 * **Communication:** You are forbidden from generating any conversational output, commentary, preamble, or summaries. Your entire output must be the content of the `docs/TECH_STACK.md` file itself. Do not repeat the contents of `docs/TECH_STACK.md` back to the user in any other format.
 * **User Interaction:** You do not directly converse with the user. If sections of the `docs/TECH_STACK.md` are incomplete, you will indicate this *within* the `docs/TECH_STACK.md` file using a specific comment format.
 
@@ -68,10 +70,10 @@ The `docs/TECH_STACK.md` file must be structured around the following key sectio
         * Review `NOTES.md`, `docs/PRD.md`, and `docs/openapi.yaml` for relevant information pertaining to that section. Note that some outline points specifically suggest referencing `docs/PRD.md` or `docs/openapi.yaml`.
         * Update the corresponding section in `docs/TECH_STACK.md` with this information. If the section already has content, intelligently merge or update it based on the latest information from all source files. Strive to be comprehensive but concise.
     * **Identify Gaps & Insert TODOs:** After attempting to populate each section from `NOTES.md`, `docs/PRD.md`, and `docs/openapi.yaml`:
-        *   A TODO comment MUST ONLY be inserted if, after reviewing `NOTES.md`, `docs/PRD.md`, and `docs/openapi.yaml`, the section in `docs/TECH_STACK.md` remains genuinely empty, or contains only placeholder text (e.g., a rephrasing of the section title without substantive information), or if critical information explicitly requested by the section's definition (as outlined in "Tech Stack Definition Outline") is clearly missing and not found in the source files.
-        *   Do NOT insert a TODO comment if the section has been populated with relevant information from the source files, even if that information could be more detailed. The purpose of the TODO is to address missing information, not to solicit further elaboration on existing information unless that information is so scant as to be effectively missing or fails to address the core requirements of the section.
-        *   **TODO Comment Format:** Use an HTML comment starting with `<!-- TODO: ... -->`. (This aligns the format with the `prd` rule for consistency and allows the guiding question to be embedded within the comment, which supports the goal stated in "Contextual TODO Prompts".)
-        *   **Contextual TODO Prompts:** The primary goal of the TODO comment, when necessary according to the criteria above, is to clearly state what information is missing by asking the relevant question. Provide helpful examples (either from the outline point itself or generated if the outline point lacks them) to elicit the required details. Formulate targeted questions based on the current context and the specific missing information.
+        - A TODO comment MUST ONLY be inserted if, after reviewing `NOTES.md`, `docs/PRD.md`, and `docs/openapi.yaml`, the section in `docs/TECH_STACK.md` remains genuinely empty, or contains only placeholder text (e.g., a rephrasing of the section title without substantive information), or if critical information explicitly requested by the section's definition (as outlined in "Tech Stack Definition Outline") is clearly missing and not found in the source files.
+        - Do NOT insert a TODO comment if the section has been populated with relevant information from the source files, even if that information could be more detailed. The purpose of the TODO is to address missing information, not to solicit further elaboration on existing information unless that information is so scant as to be effectively missing or fails to address the core requirements of the section.
+        - **TODO Comment Format:** Use an HTML comment starting with `<!-- TODO: ... -->`. (This aligns the format with the `prd` rule for consistency and allows the guiding question to be embedded within the comment, which supports the goal stated in "Contextual TODO Prompts".)
+        - **Contextual TODO Prompts:** The primary goal of the TODO comment, when necessary according to the criteria above, is to clearly state what information is missing by asking the relevant question. Provide helpful examples (either from the outline point itself or generated if the outline point lacks them) to elicit the required details. Formulate targeted questions based on the current context and the specific missing information.
 
 4.  **Output:** Your final action is to output the complete, updated content of `docs/TECH_STACK.md`. No other text or explanation should be provided.
 

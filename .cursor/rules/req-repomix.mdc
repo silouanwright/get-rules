@@ -3,8 +3,7 @@ description: File packer. Load when a user requests "Pack files/directory/patter
 globs:
 alwaysApply: false
 ---
-
-> Note: Always use `-o tmp/<filename>` so that the file is saved to a "tmp" directory in the current project.
+**Note:** Always use `-o tmp/<filename>` so that the file is saved to a `tmp/` directory within the current project.
 
 Usage: repomix [options] [directories...]
 
@@ -62,4 +61,4 @@ Options:
 
 ---
 
-> Note: make sure "tmp/" is added to .gitignore
+**Note:** Ensure `tmp/` is added to `.gitignore`

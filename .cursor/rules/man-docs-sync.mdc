@@ -3,5 +3,8 @@ description:
 globs: 
 alwaysApply: false
 ---
-Read through docs/*
-Update anything that appears out-of-date based on the completed docs/tasks/*
+# Documentation Synchronization Guide
+
+- Read through all files in `docs/`.
+- Review completed tasks (e.g., in `docs/tasks/` or commit history).
+- Update any documentation (`docs/*`) that appears out-of-date based on the completed work.

@@ -3,28 +3,31 @@ description:
 globs: 
 alwaysApply: true
 ---
+# Global Guiding Principles & Preferences
+
 ## Guiding Principles
 1. Observability: add excessive logging
 2. Small files: limit files to 200 lines
 3. Micro-milestones: perform work in commit-sized chunks. Optimize for rewinding.
 
 ## Package Managers
-Default to pnpm unless otherwise specified
+Default to `pnpm` unless otherwise specified
 
 ## Prefered Libraries
-- Testing: vitest
-- Formatting/Linting: @biomejs/biome
-- Running TypeScript: tsx
+## Preferred Libraries
+- Testing: `vitest`
+- Formatting/Linting: `@biomejs/biome`
+- Running TypeScript: `tsx`
 
 ## Running Terminal Commands
-Avoid newline characters in commit messages, long strings, etc. They break out automated terminal tool
+**Important:** Avoid newline characters within single arguments or strings passed to the terminal tool, as they can cause parsing issues.
 
 ## Git
 - AVOID --no-verify
 - Never push a failing test to the repo
 
 ## Project and Config Initialization
-Always use popular CLIs for creating project and configs
+Use popular CLIs for creating projects and configurations whenever possible.
 
 Examples: 
 - pnpm init

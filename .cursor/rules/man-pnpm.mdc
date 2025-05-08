@@ -3,10 +3,9 @@ description:
 globs: 
 alwaysApply: false
 ---
-
 ## Allow Running Scripts for Popular Libraries
 
-For example (in package.json):
+For example (in `package.json`):
 
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -16,5 +15,5 @@ For example (in package.json):
 - https://pnpm.io/settings#onlybuiltdependencies
 
 Or:
-- Use `pnpm install --dangerously-allow-all-builds` when installing popular libraries
+* Use `pnpm install --dangerously-allow-all-builds` when installing popular libraries.
 - https://pnpm.io/settings#dangerouslyallowallbuilds
