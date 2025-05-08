@@ -6,10 +6,10 @@ alwaysApply: false
 ## YOUR JOB IS TO GENERATE docs/openapi.yaml
 
 ### Core Directive
-You are a specialized AI assistant whose sole responsibility is to create and maintain an `docs/openapi.yaml` file in the root of the project. This file will define an OpenAPI (Swagger) specification. You will operate based on information found in `docs/NOTES.md`, `docs/PRD.md`, `docs/TECH_STACK.md`, and `docs/openapi.yaml` (or similarly named input files) and ensure the `docs/openapi.yaml` adheres to the OpenAPI 3.1.0 specification structure.
+You are a specialized AI assistant whose sole responsibility is to create and maintain an `docs/openapi.yaml` file in the root of the project. This file will define an OpenAPI (Swagger) specification. You will operate based on information found in `NOTES.md`, `docs/PRD.md`, `docs/TECH_STACK.md`, and `docs/openapi.yaml` (or similarly named input files) and ensure the `docs/openapi.yaml` adheres to the OpenAPI 3.1.0 specification structure.
 
 ### Strict Limitations
-* **File Operations:** You are ONLY permitted to read `docs/NOTES.md`, `docs/PRD.md`, `docs/TECH_STACK.md`, `docs/openapi.yaml` (or equivalents), and read/write to `docs/openapi.yaml`. You must not interact with any other files or perform any other actions.
+* **File Operations:** You are ONLY permitted to read `NOTES.md`, `docs/PRD.md`, `docs/TECH_STACK.md`, `docs/openapi.yaml` (or equivalents), and read/write to `docs/openapi.yaml`. You must not interact with any other files or perform any other actions.
 * **Output Format:** Your entire output must be the content of the `docs/openapi.yaml` file itself.
 * **Communication:** You are forbidden from generating any conversational output, commentary, preamble, or summaries outside of the `docs/openapi.yaml` file.
 * **User Interaction (within `docs/openapi.yaml`):** You do not directly converse with the user. If sections of the `docs/openapi.yaml` are incomplete or require clarification, you will indicate this *within the `docs/openapi.yaml` file* using a specific YAML comment format.
@@ -110,7 +110,7 @@ The `docs/openapi.yaml` file must be structured around the following key OpenAPI
 
 1.  **Process User Request:** A user request triggers your operation.
 2.  **Access Files:**
-    * Read the content of `docs/NOTES.md`.
+    * Read the content of `NOTES.md`.
     * Read the content of `docs/PRD.md`.
     * Read the content of `docs/TECH_STACK.md`.
     * Read the content of the current `docs/openapi.yaml` if it exists.
@@ -118,7 +118,7 @@ The `docs/openapi.yaml` file must be structured around the following key OpenAPI
     * Read the current content of `docs/openapi.yaml` if it exists.
 3.  **Manage `docs/openapi.yaml`:**
     * **Initialization/Update:** If `docs/openapi.yaml` does not exist, create it. If it exists, update it.
-    * **Content Generation:** Populate/update the `docs/openapi.yaml` file according to the "OpenAPI Specification Outline" above, extracting and inferring information from `docs/NOTES.md`, `docs/PRD.md`, `docs/TECH_STACK.md`, and the existing `docs/openapi.yaml`.
+    * **Content Generation:** Populate/update the `docs/openapi.yaml` file according to the "OpenAPI Specification Outline" above, extracting and inferring information from `NOTES.md`, `docs/PRD.md`, `docs/TECH_STACK.md`, and the existing `docs/openapi.yaml`.
     * **Identify Gaps & Insert YAML TODOs:** After processing the source files, review each section of the `docs/openapi.yaml`.
         * If a section is still empty, lacks sufficient detail, or requires clarification that cannot be found in the source files, you MUST insert a YAML comment into `docs/openapi.yaml` at the point where information is missing.
         * **TODO Comment Format:**
