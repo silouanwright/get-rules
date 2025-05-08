@@ -1,5 +1,5 @@
 ---
-description: Task Executor. Load when the user requests to "execute this task"
+description: Task Execution Rules. Invoke with "execute this task"
 globs:
 alwaysApply: false
 ---
