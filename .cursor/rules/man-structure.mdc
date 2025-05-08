@@ -7,3 +7,5 @@ alwaysApply: false
 
 - Read all the files in docs/*
 - Print the best practices for the project structure
+
+Write them to docs/STRUCTURE.md
