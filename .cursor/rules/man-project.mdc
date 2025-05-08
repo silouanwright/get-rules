@@ -3,9 +3,110 @@ description:
 globs: 
 alwaysApply: false
 ---
+# .cursor/rules/always-project.mdc manager
+
+## Core Directive
+
+Update .cursor/rules/always-project.mdc based on project's configuration and docs
+
+## Task
+
 Gather project information about configuration, libraries:
 - list all files in the project root and read the files relevant to configuration
 - read all files in docs
 
 Read and update the following file with the information you find:
-- ./cursor/rules/always/project.mdc
+- ./cursor/rules/always-project.mdc
+
+
+## .cursor/rules/always-project.mdc Template
+
+Use this template as guide for creating the always-project.mdc:
+
+<template>
+---
+# --- YAML Front Matter (Required) ---
+# Brief description of this rule file's purpose.
+description: Project overview, tech stack, and core development guidelines for [Project Name].
+# File globs this rule applies to. Leave empty or use '*' for project-wide context.
+globs: ["src/**/*", "*.config.js", "*.json"]
+# Whether the rule should always be loaded by the AI. 'true' for core project context.
+alwaysApply: true
+---
+
+# [Project Name] - Project Rules
+
+## 1. Project Overview
+
+*   **Goal:** [Concisely describe the main purpose and goal of the project. What problem does it solve?]
+*   **Type:** [e.g., Web Application, CLI Tool, Library, Mobile App, Backend API, Monorepo]
+*   **Key Features:** [List 3-5 core functionalities or features.]
+
+## 2. Technology Stack
+
+*   **Language(s):** [e.g., TypeScript 5.x, Python 3.11, Go 1.23, Java 17]
+*   **Framework(s):** [e.g., Next.js 15 (App Router), React 19, FastAPI, Spring Boot, SvelteKit]
+*   **UI Library/Styling:** [e.g., Tailwind CSS v4, Shadcn UI, Material UI, CSS Modules]
+*   **Database(s):** [e.g., PostgreSQL via Prisma, MongoDB, Supabase, SQLite via Drizzle]
+*   **State Management:** [e.g., Zustand, React Context, Redux, Pinia, None (Local State)]
+*   **API Layer:** [e.g., REST (via Next.js API Routes/FastAPI), GraphQL, tRPC]
+*   **Key Libraries:** [List any other critical dependencies, e.g., Zod, date-fns, Axios, LangChain]
+
+## 3. Project Structure
+
+*   **Main Source Directory:** [e.g., `src/`, `app/`, `packages/`]
+*   **Core Directories:** [Briefly list key directories and their purpose, e.g.,
+    *   `components/`: Reusable UI elements
+    *   `lib/` or `utils/`: Shared utility functions
+    *   `services/` or `api/`: Business logic, API interactions
+    *   `types/`: Shared type definitions
+    *   `db/` or `prisma/`: Database schema and access
+    *   `tests/`: Test files (if not co-located)
+    ]
+*   **(Optional) Diagram/Link:** [Link to an architecture diagram or provide a simple ASCII tree if helpful.]
+
+## 4. Coding Standards & Conventions
+
+*   **Language Usage:** [e.g., Prefer functional components, Use async/await, Strict TypeScript mode, Avoid `any`]
+*   **Naming Conventions:**
+    *   Files/Folders: [e.g., kebab-case, PascalCase]
+    *   Components: [e.g., PascalCase]
+    *   Variables/Functions: [e.g., camelCase, snake_case]
+    *   Types/Interfaces: [e.g., PascalCase, TPrefix]
+*   **Code Style/Formatting:** [e.g., Prettier, ESLint, Ruff, Biome - mention config file if present, e.g., `.eslintrc.js`]
+*   **Comments:** [e.g., English only, JSDoc for public APIs, Minimal comments]
+*   **Imports:** [e.g., Absolute paths (`@/`), Grouped/Sorted (stdlib, external, internal)]
+
+## 5. Key Principles & Best Practices
+
+*   [List 2-4 guiding principles, e.g., DRY, Security-first, Performance optimization, Accessibility (WCAG AA), Modularity, Testability]
+
+## 6. Testing
+
+*   **Framework:** [e.g., Jest, Vitest, Pytest, Go testing]
+*   **Types:** [e.g., Unit tests required for services, Integration tests for API endpoints, E2E with Playwright/Cypress]
+*   **Location:** [e.g., Co-located with source files (`*.test.ts`), Top-level `tests/` directory]
+
+## 7. Tooling & Workflow
+
+*   **Package Manager:** [e.g., pnpm, npm, bun, yarn, poetry, uv]
+*   **Build Command(s):** [e.g., `pnpm build`, `make build`]
+*   **Run Command(s):** [e.g., `pnpm dev`, `python main.py`, `go run ./cmd/...`]
+*   **Version Control:** [e.g., Git, Conventional Commits required, PRs to main branch]
+*   **CI/CD:** [e.g., GitHub Actions - lint, test, build on PR]
+
+## 8. (Optional) Database / API Guidelines
+
+*   [Add specific rules for DB interaction (e.g., Use ORM methods only, No direct SQL), API design (e.g., RESTful principles, Error response format), or Server Actions.]
+
+## 9. (Optional) Specific Feature Rules
+
+*   [Add rules for specific complex parts of the application if needed, e.g., Authentication, Internationalization (i18n), State Management details.]
+
+## 10. (Optional) Rule Referencing
+
+*   [If applicable, link to other `.mdc` rule files for more detailed guidelines, e.g.,
+    *   `See [typescript.mdc](mdc:.cursor/rules/typescript.mdc) for detailed TS rules.`
+    *   `Follow guidelines in [auth.mdc](mdc:.cursor/rules/auth.mdc) for authentication.`
+    ]
+</template>
