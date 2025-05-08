@@ -7,4 +7,5 @@ Write a summary of everything from this conversation to docs/pr/pr-body-file-<br
 Use the gh cli to create a Pull Request, fill the title,etc and use --body-file ./docs/pr-body-file-<branch-name>.md
 
 Example:
+git push -u origin <branch-name>
 gh pr create --title "feat: Enforce normalized, dash-separated, lowercase labels for all shells" --body-file docs/pr/pr-body-file-fix-label-sanitization.md --fill
