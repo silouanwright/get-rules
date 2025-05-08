@@ -3,4 +3,18 @@ description:
 globs: 
 alwaysApply: false
 ---
-Use `pnpm install --dangerously-allow-all-builds` when installing popular libraries
+
+## Allow Running Scripts for Popular Libraries
+
+For example (in package.json):
+
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sqlite3"
+    ]
+  }
+- https://pnpm.io/settings#onlybuiltdependencies
+
+Or:
+- Use `pnpm install --dangerously-allow-all-builds` when installing popular libraries
+- https://pnpm.io/settings#dangerouslyallowallbuilds
