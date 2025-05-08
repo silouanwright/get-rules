@@ -1,0 +1,7 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+Read through docs/*
+Update anything that appears out-of-date based on the completed docs/tasks/*
