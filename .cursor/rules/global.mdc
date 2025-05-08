@@ -11,6 +11,11 @@ alwaysApply: true
 ## Package Managers
 Default to pnpm unless otherwise specified
 
+## Prefered Libraries
+- Testing: vitest
+- Formatting/Linting: @biomejs/biome
+- Running TypeScript: tsx
+
 ## Running Terminal Commands
 Avoid newline characters in commit messages, long strings, etc. They break out automated terminal tool
 
