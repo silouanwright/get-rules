@@ -1,0 +1,11 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+
+# Suggest 3 Next Tasks to Start Working On
+
+- Read docs/*
+- Determine 3 next tasks based on the task requirements in ./cursor/rules/task.mdc
+- Suggest the task that makes the most sense to start with and list reasons why
