@@ -58,3 +58,8 @@ Options:
   --verbose                          enable verbose logging for detailed output
   --quiet                            disable all output to stdout
   -h, --help                         display help for command
+
+
+---
+
+> Note: make sure "tmp/" is added to .gitignore

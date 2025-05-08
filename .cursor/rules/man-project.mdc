@@ -1,0 +1,11 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+Gather project information about configuration, libraries:
+- list all files in the project root and read the files relevant to configuration
+- read all files in docs
+
+Read and update the following file with the information you find:
+- ./cursor/rules/always/project.mdc
