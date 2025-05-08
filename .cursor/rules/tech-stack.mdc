@@ -1,5 +1,5 @@
 ---
-description: TECH-STACK.md manager. Use whenever a user talks about a "tech stack"
+description: Invoke with "create a tech stack". Manages docs/TECH_STACK.md
 globs: 
 alwaysApply: false
 ---
