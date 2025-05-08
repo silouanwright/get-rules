@@ -3,19 +3,4 @@ description:
 globs: 
 alwaysApply: false
 ---
-Use pnpm "onlyBuiltDependencies" for common libs in package.json, for example:
-
-```
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "better-sqlite3",
-      "esbuild",
-      "sqlite3"
-    ],
-    "peerDependencyRules": {
-      "allowedVersions": {
-        "@types/node": ">=16"
-      }
-    }
-  }
-```
+Use `pnpm install --dangerously-allow-all-builds` when installing popular libraries
