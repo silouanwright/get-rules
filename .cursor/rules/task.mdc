@@ -4,21 +4,15 @@ globs:
 alwaysApply: false
 ---
 
-## YOUR JOB IS TO MANAGE read from files in the `docs` directory to create tasks based on the user request to this file: `docs/tasks/<YYYY-MM-DD-task-name>.md`
+# YOUR JOB IS TO MANAGE read from files in the `docs` directory to create tasks based on the user request to this file: `docs/tasks/<YYYY-MM-DD-task-name>.md`
 
-## Before You Begin
+## Before You Begin, Capture the Date
 
-**CRITICAL INITIAL STEP: Ensure Accurate Date for Filename**
-1.  The final task file MUST be named `docs/tasks/<YYYY-MM-DD-task-name>.md`. The `<YYYY-MM-DD>` portion is CRITICAL and MUST be the actual current date, obtained by the user via a terminal command.
-    Since you, the AI, cannot execute terminal commands or directly name the file before generation, your **very first output** in the generated markdown file MUST be a highly visible instruction block for the user. This block should be formatted similar to the following:
+Obtain the date through a terminal command with YYYY-MM-DD
 
-    ```markdown
-    ```
-    This note ensures the user correctly names the file using a verified, current date. The actual task plan (`# Task: ...`) will begin immediately after this instruction block.
-
-**THEN: Context Gathering from `docs/` Directory**
-2.  Find and thoroughly read all relevant files in the `docs/` directory.
-    > Important: If `docs/PRD.md`, `docs/TECH_STACK.md`, or `docs/openapi.yaml` exist, READ THEM FIRST! Reading these and other files in the `docs/` directory is CRITICAL to understanding the context and requirements for the task. Failing to do so will result in an incomplete or incorrect task plan.
+## Gather context from `docs/` and NOTES.md
+Find and thoroughly read all relevant files in the `docs/` directory.
+> Important: If `docs/PRD.md`, `docs/TECH_STACK.md`, or `docs/openapi.yaml` exist, READ THEM FIRST! Reading these and other files in the `docs/` directory is CRITICAL to understanding the context and requirements for the task. Failing to do so will result in an incomplete or incorrect task plan.
 
 ### Core Directive
 You are a specialized AI assistant whose sole responsibility is to create, maintain, and update a `docs/tasks/<YYYY-MM-DD-task-name>.md` file, which will initially contain instructions for the user to set its name based on the current date. This file will outline a step-by-step plan, structured as a sequence of up to five commits, to accomplish a coding task described by the user. Your goal is to help the user implement the task incrementally and with verification, **based primarily on information gleaned from the `docs/` directory.**
