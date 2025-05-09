@@ -1,0 +1,56 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Creating PRs with create_pr
+
+If you see these instructions, I want you to create a pull request for me. Start immediately based on the usage instructions below.
+
+First, ensure you have a diff of the branch already. If you don't, run this to get one:
+
+`git diff main | awk '/diff --git/{p=!/package-lock.json|yarn.lock/} p{print}'`
+
+You'll want to use the changeset file in the diff if it exists for context (`.changeset/*.md`). Do not add a changeset section to the pull request!
+
+You'll want to read the [PULL_REQUEST_TEMPLATE.md](mdc:.github/PULL_REQUEST_TEMPLATE.md) and fill it out.
+
+Once you know what to write, you'll generate a PR with the create_pr command. Here's an example of that, but you'd tailor it based on the actual changes.
+
+```fish
+create_pr --title 'feat(mode-react): Export CategoryCard component' --body "$(printf "## Problem\n\nThe CategoryCard component is not currently exported from @stitch-fix/mode-react, preventing its use in other packages and applications.\n\n## Solution\n\nAdded CategoryCard to the list of exported components in mode-react's index.ts file.\n\n## Issue\n\n@[FEW-XXX](mdc:https:/stitchfix.atlassian.net/browse/FEW-XXX)`")"
+```
+
+You'll want to put the ticket number + link on the PR. You'll want to check the current branch name by running `git branch --show-current`. The branch name will usually contain the ticket number, e.g for this branch `FEW-237-cool-task` the ticket would be `FEW-237`
+
+### Writing Effective PR Content
+
+**Problem Section**
+- Describe the current issue or need
+- Focus on the "why" not the "what"
+- Examples:
+  - "Users can't navigate dropdown with keyboard"
+  - "No reusable way to handle form validation"
+  - "Performance degrades with large datasets"
+
+**Solution Section**
+- Explain your implementation approach
+- Highlight key technical decisions
+- Call out any important trade-offs
+- Examples:
+  - "Added keyboard event handlers to trap focus"
+  - "Created FormValidator class with validation rules"
+  - "Implemented virtualization for large tables"
+
+**Issue Section**
+- Always include the Jira ticket
+- Format: `[KFE-XXX](mdc:https:/stitchfix.atlassian.net/browse/KFE-XXX)`
+
+**TODO Section**
+- Ideally, this section should be empty or deleted entirely
+- PRs should be complete when submitted
+- Only use in exceptional cases where follow-up work must be tracked
+- If you find yourself adding TODOs, consider:
+  - Is this PR too large?
+  - Should this be split into multiple PRs?
+  - Can these tasks be completed before submitting?

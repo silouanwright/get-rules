@@ -10,15 +10,6 @@ alwaysApply: true
 2. Small files: limit files to 200 lines
 3. Micro-milestones: perform work in commit-sized chunks. Optimize for rewinding.
 
-## Package Managers
-Default to `pnpm` unless otherwise specified
-
-## Prefered Libraries
-## Preferred Libraries
-- Testing: `vitest`
-- Formatting/Linting: `@biomejs/biome`
-- Running TypeScript: `tsx`
-
 ## Running Terminal Commands
 **Important:** Avoid newline characters within single arguments or strings passed to the terminal tool, as they can cause parsing issues.
 

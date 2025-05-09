@@ -1,0 +1,56 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Enhanced TypeScript Best Practices
+
+### Type System
+- Prefer interfaces over types for object definitions
+- Use types for unions, intersections, and mapped types
+- Avoid enums; use const objects or union types instead
+- Use strict mode
+
+### Type Safety
+- Avoid using 'any' or 'unknown' unless absolutely necessary
+- Use type guards when working with 'unknown' values
+- Avoid type assertions like 'as' or '!'
+- Use type guards and narrowing instead of type assertions
+
+### Nullability and Optionals
+- Use optional chaining and nullish coalescing operators
+- Use discriminated unions for complex state handling
+- Prefer undefined over null for optional values
+
+### Function Types
+- Use function overloads for functions with multiple signatures
+- Add explicit return types for public functions and methods
+- Use arrow functions for callbacks and simple functions
+
+### Type Definitions
+- Create utility types for common patterns
+- Use branded/nominal types for type safety with primitives
+- Use readonly modifiers for immutable data
+- Use Record<K, V> instead of {[key: string]: V}
+
+### Code Organization
+- Use ES modules instead of namespaces
+- Organize imports consistently (external, internal, relative)
+- Export types from barrel files for easier imports
+- Keep related types and interfaces close to their implementation
+
+### Error Handling
+- Define custom error types for domain-specific errors
+- Use Result/Either pattern for functions that may fail
+- Avoid throwing errors in pure functions
+
+### Best Practices
+- Use template literal types for string manipulation
+- Leverage const assertions for literal values
+- Use generics for reusable components and functions
+- Prefer index signatures with more specific keys
+- Use satisfies operator to validate object shapes while preserving literal types
+- Use private/protected modifiers to enforce encapsulation
+- Prefer method signatures in interfaces over property signatures of function types
+- Implement proper type guards
+- Use discriminated unions for complex state

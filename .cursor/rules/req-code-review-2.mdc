@@ -1,0 +1,38 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Run cr
+
+We're going to prepare to pack files to do a code review in another AI.
+
+If we've talked at length, tell me to add the conversation from specstory first, otherwise, do not mention this at all.
+
+Run the following to get the changes (if you don't already have a diff)
+
+`git diff main | awk '/diff --git/{p=!/package-lock.json|yarn.lock/} p{print}'`
+
+With the conversation and the diff, it may be beneficial to pack additional files, because a diff may not be enough. 
+
+After you pack those files I want tou to copy the following to my clipboard:
+
+1. This conversation (only if I added the conversation from specstory)
+2. The diff
+3. The packed filed.
+4. The code review considerations below
+
+## Code review Considerations
+
+Consider:
+1. Code quality and adherence to best practices
+2. Potential bugs or edge cases
+3. Performance optimizations
+4. Readability and maintainability
+5. Any security concerns
+
+Suggest improvements and explain your reasoning for each suggestion.
+
+## additional notes
+
+Feel free to use the other cursor rules for more specific best practices (TypeScript, React, Storybook, Tests, etc)

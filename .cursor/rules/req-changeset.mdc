@@ -1,0 +1,51 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+I want you to create a changeset markdown file for me.
+
+First, run a git diff: `git diff main | awk '/diff --git/{p=!/package-lock.json|yarn.lock/} p{print}'`
+
+Based on the changes of this diff, create a changeset file
+
+- It goes in the `.changeset/` folder which already exists
+- The file name abides by the following rules
+  - It's naming should be 3 words separated by hyphens 
+	  -	First word is an adjective (e.g., "itchy")
+	  -	Second word is a noun (e.g., "eyes")
+	  -	Third word is a verb (e.g., "design")
+  - The words are chosen generically and randomly (from adjectives, nouns, and verbs)
+  - For instance: `.changeset/tasty-moons-destroy.md`
+- Here is an example of a changeset
+
+```
+---
+'@stitch-fix/knit': patch
+---
+
+fix(knit:Banner): add new color for Banner Component
+```
+
+- Determine based on the diff I give you, which packages should be bumped
+- The package is based on the directory of the change that is inside `src/packages`. `mode-react`, `knit`, etc
+- Determine based on the nature of the changes (and SEMVER), whether those packages are major, minor, or patch bumps
+- The description should use the conventional commit format
+
+Here are multiple examples
+
+  ```
+  fix(mode-react:SaveBookmark): Remove duplicate accessibility label
+  ```
+  ```
+  fix(knit): Rebrand - fix primary nav hide on scroll
+  ```
+  ```
+  feat!: Migrate mode-react into the monorepo, also:
+
+  - Removes styleName prop for className
+  - Removed all KFI dependencies and references
+  - Improved e2e test flakyness
+  - Removed deprecated sass method `str-slice` for `string.slice`
+  - Bump @svg/core from v5 -> v8 for SVG Icons and updated the SVG Template
+  ```

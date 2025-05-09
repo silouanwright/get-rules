@@ -1,0 +1,23 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Run cr
+
+I want you to do a thorough review of my code changes
+
+Run the following to get the changes (if you don't already have a diff)
+
+`git diff main | awk '/diff --git/{p=!/package-lock.json|yarn.lock/} p{print}'`
+
+Consider:
+1. Code quality and adherence to best practices
+2. Potential bugs or edge cases
+3. Performance optimizations
+4. Readability and maintainability
+5. Any security concerns
+
+Suggest improvements and explain your reasoning for each suggestion.
+
+Feel free to use the other cursor rules for more specific best practices (TypeScript, React, Storybook, Tests, etc)

@@ -1,0 +1,43 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Creating Jira Tickets
+
+## Usage
+```fish
+create_ticket "Ticket Title" ["Markdown Description"]
+```
+
+## Examples
+1. Create a ticket with just a title:
+```fish
+create_ticket "Update navigation menu styles"
+```
+
+2. Create a ticket with title and markdown description:
+
+```fish
+create_ticket "Update navigation menu styles" "$(printf "# Problem\nThe current navigation menu doesn't match our new design system and lacks mobile responsiveness. This causes inconsistency in our UI and poor mobile UX, particularly on tablets where hover states don't work well.\n\n# Overview\nNeed to implement new design system changes for the main navigation menu to align with our new brand guidelines and improve mobile experience.\n\n## Requirements\n- Update colors to match new palette\n- Implement new hover states\n- Add support for **mobile responsive** design\n\n## Technical Notes\n- Uses \`NavigationMenu\` component from design system\n- Requires changes to \`theme.ts\`")"
+```
+
+## What it does
+- Creates a FEW (Frontend Web) Jira task
+- Opens the ticket in your browser after creation
+- Returns the ticket ID (e.g., FEW-1234)
+
+## Notes
+- The ticket will be created as a Task type in the FEW project
+- Always start with a clear "Problem" section that describes:
+  - What the current issue is
+  - Why it needs to be fixed
+  - Impact on users/business
+- Descriptions support full markdown syntax including:
+  - Headers (# for h1, ## for h2, etc)
+  - Lists (- or * for bullets, 1. for numbered)
+  - Text formatting (**bold**, *italic*)
+  - Code blocks (inline `code` or ```fenced```)
+  - Tables and links
+- If no description is provided, it will create the ticket with an empty description
+- Unlike `create-sprint-ticket`, this function does not add the ticket to any sprint

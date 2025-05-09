@@ -1,0 +1,127 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Storybook Guidelines
+
+## Modern Structure
+```typescript
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test'; // Replace action()
+import { YourComponent } from '../../src';
+
+const meta: Meta<typeof YourComponent> = {
+  component: YourComponent,
+  args: {
+    // Common props and event handlers
+    onClick: fn(),
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof YourComponent>;
+
+export const Example: Story = {
+  args: {
+    prop1: 'value1',
+    prop2: 'value2',
+  },
+};
+```
+
+## Key Principles
+- Stories are objects, not functions
+- Use args for props instead of inline JSX
+- Define common props at meta level, specific ones at story level
+- Use render function only for complex cases
+- Always spread args with `{...args}` in render functions
+- Replace `action()` with `fn()` from '@storybook/test'
+- Define common actions at meta level
+
+## Transformation Patterns
+
+### Basic Story
+```typescript
+// Before
+export const Basic = () => <Component prop="value" />;
+
+// After
+export const Basic: Story = {
+  args: {
+    prop: 'value',
+  },
+};
+```
+
+### Complex Story with State
+```typescript
+// Before
+export const WithState = () => {
+  const [value, setValue] = useState(false);
+  return (
+    <Component 
+      value={value}
+      onChange={(newValue) => {
+        setValue(newValue);
+        action('onChange')(newValue);
+      }}
+    />
+  );
+};
+
+// After
+export const WithState: Story = {
+  args: {
+    onChange: fn(),
+  },
+  render: (args) => {
+    const [value, setValue] = useState(false);
+    return (
+      <Component
+        {...args}
+        value={value}
+        onChange={(newValue) => {
+          setValue(newValue);
+          args.onChange?.(newValue);
+        }}
+      />
+    );
+  },
+};
+```
+
+### Multiple Instances
+```typescript
+// Before
+export const Multiple = () => (
+  <Stack>
+    <Component label="First" />
+    <Component label="Second" />
+  </Stack>
+);
+
+// After
+export const Multiple: Story = {
+  render: (args) => (
+    <Stack>
+      <Component {...args} label="First" />
+      <Component {...args} label="Second" />
+    </Stack>
+  ),
+};
+```
+
+## Important Guidelines
+- Never remove existing stories or functionality
+- Preserve all edge cases and variations
+- Keep imports even if they appear unused
+- Maintain existing documentation
+- Extract repeated data to variables
+- Place common actions at meta level
+- Use story-level actions only for specific behavior
+
+## Quick Reference
+- [CSF 3.0 Documentation](https://storybook.js.org/docs/react/api/csf)
+- [Controls Documentation](https://storybook.js.org/docs/essentials/controls)
+- [Actions Documentation](https://storybook.js.org/docs/essentials/actions)

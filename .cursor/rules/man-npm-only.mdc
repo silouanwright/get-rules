@@ -1,0 +1,8 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# NPM
+
+We use npm in this project. Not yarn or pnpm

@@ -1,0 +1,10 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+Whenever you want to publish a snapshot, run the following command
+
+```bash
+npm run publish-snapshot
+```
